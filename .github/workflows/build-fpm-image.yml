@@ -1,0 +1,18 @@
+name: Build PHP FPM Docker Image
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file containers/php-7.3-fpm/Dockerfile --tag php-7.3-fpm:$(date +%s)
