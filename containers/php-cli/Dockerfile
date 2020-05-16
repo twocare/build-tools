@@ -10,9 +10,7 @@ RUN apk upgrade --no-cache --update \
     && docker-php-ext-install mysqli pdo pdo_mysql tokenizer xml exif pcntl bcmath zip \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install gd \
-    && docker-php-ext-install intl
-
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Uninstall the grouping of dependencies called `.build-deps`.
-RUN apk del .build-deps
+    && docker-php-ext-install intl \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    # Uninstall the grouping of dependencies called `.build-deps`.
+    && apk del .build-deps
