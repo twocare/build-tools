@@ -7,7 +7,7 @@ RUN apk upgrade --no-cache --update \
     && apk add --no-cache --virtual .build-deps $BUILD_DEPS \
     && apk add --no-cache --virtual .persistent-deps $PERSISTENT_DEPS \
     && apk --update --no-cache add \
-    && docker-php-ext-install mysqli pdo pdo_mysql tokenizer xml exif pcntl bcmath zip \
+    && docker-php-ext-install mysqli pdo pdo_mysql xml exif pcntl bcmath zip \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install gd \
     && docker-php-ext-install intl \
