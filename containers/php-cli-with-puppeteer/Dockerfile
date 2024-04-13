@@ -14,5 +14,12 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql xml exif pcntl bcmath zip \
     && docker-php-ext-install intl \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+RUN apk add --no-cache chromium nss freetype freetype-dev \
+    harfbuzz ca-certificates ttf-freefont nghttp2-dev nodejs npm && \
+    npm install -g puppeteer@1.19.0
+
 # Uninstall the grouping of dependencies called `.build-deps`.
 RUN apk del .build-deps
